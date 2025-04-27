@@ -1,0 +1,16 @@
+<div id="{{ menu_name }}">
+    {% block menu %}
+    <ul>
+        {% for node in tree %}
+            <li {% if node.item.id in active_item_ids %}class="active"{% endif %}>
+                <a href="{{ node.item.url }}">{{ node.item.name }}</a>
+                {% if node.children %}
+                    <ul>
+                        {% include 'menu.html' with tree=node.children only %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+</div>
